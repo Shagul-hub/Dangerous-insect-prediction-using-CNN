@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Insect Detector</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f6f8fb; color:#222; padding:30px; }
+    .card { background:white; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.08); max-width:680px; margin:0 auto; }
+    h1 { margin-top:0; }
+    input[type=file] { margin-top:10px; }
+    .btn { padding:10px 18px; background:#1976D2; color:white; border:none; border-radius:5px; cursor:pointer; }
+    .note { color:#666; font-size:0.9em; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Insect Detection</h1>
+    <p>Upload an image and the model will predict the insect species, then explain its harmfulness and prevention tips.</p>
+
+    <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="image/*" required><br><br>
+      <button class="btn" type="submit">Upload & Predict</button>
+    </form>
+
+    <p class="note">Tip: Use clear images of insects. If the model is not confident (low probability), it will report "unknown".</p>
+  </div>
+</body>
+</html>

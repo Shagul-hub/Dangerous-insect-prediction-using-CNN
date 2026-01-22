@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h2 class="text-primary">Prediction Result</h2>
+
+    {% if result.is_known %}
+        <div class="card p-3 mb-3">
+            <img src="{{ uploaded_image }}" alt="Uploaded Image" class="img-fluid mb-3" style="max-width:300px;">
+
+            <h4>Predicted: {{ result.predicted_label }}</h4>
+
+            <div class="alert alert-warning">
+                <strong>Harmfulness:</strong>
+                <ul>
+                    {% for point in result.harm %}
+                        <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="alert alert-success">
+                <strong>Prevention:</strong>
+                <ul>
+                    {% for point in result.prevention %}
+                        <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            {{ result.message }}
+        </div>
+    {% endif %}
+
+    <a href="/" class="btn btn-primary">Try another image</a>
+</div>
+
+</body>
+</html>
